@@ -7,10 +7,3 @@ stages:
       vmImage: 'ubuntu-16.04'
     env: 'smarthotel-dev'
 
-- stage: QA
-  - template: jobs/deploy.yml  # Template references job
-    parameters:
-      name: Windows
-      pool:
-        vmImage: 'ubuntu-16.04'
-      env: 'smarthotel-qa'

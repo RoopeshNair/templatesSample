@@ -1,0 +1,17 @@
+parameters:
+  stageName: ''
+  jobName: ''
+  pool: ''
+  env: ''
+
+stages:
+- stage: Test_${{ parameters.stageName }}
+  jobs:
+  - deployment: ${{ parameters.jobName }}
+    pool: ${{ parameters.pool }}
+    environment: ${{ parameters.env }}
+    strategy:
+      runOnce:
+        deploy:     
+          steps:
+            - script: echo 'hello'

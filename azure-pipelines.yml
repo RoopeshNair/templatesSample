@@ -1,0 +1,13 @@
+jobs:
+- template: jobs/deploy.yml  # Template reference
+  parameters:
+    name: Linux
+    pool:
+      vmImage: 'ubuntu-16.04'
+
+- template: jobs/deploy.yml  # Template reference
+  parameters:
+    name: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
+    env: 'smarthotel-dev'

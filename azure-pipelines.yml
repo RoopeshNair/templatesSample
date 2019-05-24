@@ -1,14 +1,16 @@
-jobs:
-- template: jobs/deploy.yml  # Template reference
+stages:
+- template: stages/deploy.yml  # Template references stage
   parameters:
-    name: Linux
+    stageName: 'dev'
+    jobName: 'jobA'
     pool:
       vmImage: 'ubuntu-16.04'
     env: 'smarthotel-dev'
 
-- template: jobs/deploy.yml  # Template reference
-  parameters:
-    name: Windows
-    pool:
-      vmImage: 'vs2017-win2016'
-    env: 'smarthotel-qa'
+- stage: QA
+  - template: jobs/deploy.yml  # Template references job
+    parameters:
+      name: Windows
+      pool:
+        vmImage: 'ubuntu-16.04'
+      env: 'smarthotel-qa'

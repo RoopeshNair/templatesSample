@@ -4,10 +4,11 @@ jobs:
     name: Linux
     pool:
       vmImage: 'ubuntu-16.04'
+    env: 'smarthotel-dev'
 
 - template: jobs/deploy.yml  # Template reference
   parameters:
     name: Windows
     pool:
       vmImage: 'vs2017-win2016'
-    env: 'smarthotel-dev'
+    env: 'smarthotel-qa'

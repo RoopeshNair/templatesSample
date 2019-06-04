@@ -1,6 +1,3 @@
-variables: 
- envName: 'smarthotel-dev'
-
 stages:
 - template: stages/deploy.yml  # Template references stage
   parameters:
@@ -8,7 +5,7 @@ stages:
     jobName: 'deployDev'
     pool:
       vmImage: 'ubuntu-16.04'
-    env: $(envName)
+    env: 'smarthotel-dev'
 
 - stage: QA
   jobs:

@@ -1,5 +1,5 @@
 stages:
-- template: stages/${{templateFile}}  # Template references stage
+- template: stages/$(templateFile)  # Template references stage
   parameters:
     stageName: 'dev'
     jobName: 'deployDev'

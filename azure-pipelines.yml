@@ -1,5 +1,5 @@
 stages:
-- template: stages/deploy.yml  # Template references stage
+- template: stages/Deploy.yml  # Template references stage
   parameters:
     stageName: 'dev'
     jobName: 'deployDev'

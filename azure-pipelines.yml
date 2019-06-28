@@ -11,8 +11,8 @@ stages:
       vmImage: 'ubuntu-16.04'
     env: 'smarthotel-dev'
 
-- stage: $(Build.Repository.Name)
-  jobs:
+- stage: QA
+  jobs: $(Build.Repository.Name)
   - template: jobs/deploy.yml  # Template references job
     parameters:
       name: 'DeployQA'

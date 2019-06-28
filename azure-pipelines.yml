@@ -47,5 +47,5 @@ stages:
     strategy:
       runOnce:
         deploy:
-        steps:
-        - script: echo ${{ variables.arch }} ${{ variables.config }}
+          steps:
+          - script: echo ${{ variables.arch }} ${{ variables.config }}

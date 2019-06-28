@@ -1,6 +1,6 @@
 variables:
 - name: envName
-  value: '$(Build.DefinitionName)-ch-test'
+  value: '$(Build.Repository.Name)-ch-test'
   
 stages:
 - template: stages/deploy.yml  # Template references stage

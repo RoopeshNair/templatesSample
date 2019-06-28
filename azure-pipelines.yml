@@ -35,3 +35,14 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     env: 'smarthotel-uat'
+
+- stage: Prod
+  jobs:
+  - deployment:
+    environment: 'smarthotel-prod'
+    variables:
+    - template: variables/build.yml  # Template references variables
+    pool:
+      vmImage: ${{ variables.vmImage }}
+    steps:
+    - script: echo ${{ variables.arch }} ${{ variables.config }}

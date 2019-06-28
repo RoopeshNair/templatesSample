@@ -1,5 +1,5 @@
 # File: steps/deploy.yml
 
 steps:
-- script: npm install
-- script: npm test
+- script: echo running from step template
+

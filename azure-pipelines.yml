@@ -1,3 +1,7 @@
+variables:
+- name: envName
+  value: 'smarthotel'
+  
 stages:
 - template: stages/deploy.yml  # Template references stage
   parameters:
@@ -30,7 +34,7 @@ stages:
     - script: echo job A
   - deployment:
     displayName: 'deploy to Prod'
-    environment: '$(Build.DefinitionName)-prod'
+    environment: '$(envName)-prod'
     dependsOn: A
     continueOnError: true
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

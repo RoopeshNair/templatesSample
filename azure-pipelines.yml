@@ -44,5 +44,8 @@ stages:
     - template: variables/build.yml  # Template references variables
     pool:
       vmImage: ${{ variables.vmImage }}
-    steps:
-    - script: echo ${{ variables.arch }} ${{ variables.config }}
+    strategy:
+      runOnce:
+        deploy:
+        steps:
+        - script: echo ${{ variables.arch }} ${{ variables.config }}

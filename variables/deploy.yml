@@ -1,0 +1,9 @@
+# File: variables/deploy.yml
+
+variables:
+- name: vmImage
+  value: vs2017-win2016
+- name: arch
+  value: x64
+- name: config
+  value: debug

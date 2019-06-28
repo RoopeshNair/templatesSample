@@ -34,7 +34,7 @@ stages:
     - script: echo job A
   - deployment:
     displayName: 'deploy to Prod'
-    environment: '$(envName)-prod'
+    environment: '$(envName)-prod2'
     dependsOn: A
     continueOnError: true
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

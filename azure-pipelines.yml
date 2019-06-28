@@ -1,6 +1,6 @@
 variables:
 - name: envName
-  value: 'smarthotel'
+  value: '$(Build.DefinitionName)'
   
 stages:
 - template: stages/deploy.yml  # Template references stage

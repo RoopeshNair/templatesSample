@@ -41,7 +41,7 @@ stages:
   - deployment:
     environment: 'smarthotel-prod'
     variables:
-    - template: variables/build.yml  # Template references variables
+    - template: variables/deploy.yml  # Template references variables
     pool:
       vmImage: ${{ variables.vmImage }}
     strategy:

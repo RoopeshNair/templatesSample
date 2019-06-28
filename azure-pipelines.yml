@@ -15,9 +15,16 @@ stages:
       pool:
         vmImage: 'ubuntu-16.04'
       env: 'smarthotel-qa'
+
   - job:
     pool:
       vmImage: 'ubuntu-16.04'
+    steps:
+    - template: steps/deploy.yml # Template references step
+
+  - job:
+    pool:
+      vmImage: 'vs2017-win2016'
     steps:
     - template: steps/deploy.yml # Template references step
 

@@ -6,9 +6,20 @@ parameters:
 jobs:
 - deployment: ${{ parameters.name }}
   pool: ${{ parameters.pool }}
+  continueOnError: true
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  timeoutInMinutes: 10
+  cancelTimeoutInMinutes: 1
+  variables:
+    JOB_VAR: 'a job var' 
   environment: ${{ parameters.env }}
   strategy:
     runOnce:
       deploy:     
         steps:
-          - script: echo 'hello'
+          - script: echo $(JOB_VAR)
+
+
+
+
+

@@ -6,13 +6,13 @@ stages:
 - template: stages/deploy.yml  # Template references stage
   parameters:
     stageName: 'dev'
-    jobName: 'deployDev'
+    jobName: '$(Build.Repository.Name)'
     pool:
       vmImage: 'ubuntu-16.04'
     env: 'smarthotel-dev'
 
 - stage: QA
-  jobs: $(Build.Repository.Name)
+  jobs: 
   - template: jobs/deploy.yml  # Template references job
     parameters:
       name: 'DeployQA'

@@ -30,7 +30,7 @@ stages:
     - script: echo job A
   - deployment:
     displayName: 'deploy to Prod'
-    environment: 'smarthotel-prod'
+    environment: '$(Build.DefinitionName)-prod'
     dependsOn: A
     continueOnError: true
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

@@ -1,6 +1,6 @@
 variables:
 - name: envName
-  value: '$(Build.Repository.Name)-ch-test'
+  value: '$(Build.DefinitionName)-prod'
   
 stages:
 - template: stages/deploy.yml  # Template references stage
@@ -31,7 +31,7 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-    - script: echo job A
+    - script: echo job A $(Build.Repository.Name)
   - deployment:
     displayName: 'deploy to Prod'
     environment: '$(envName)-postFix'

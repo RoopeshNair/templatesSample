@@ -1,6 +1,6 @@
 variables:
 - name: envName
-  value: '$(Build.DefinitionName)'
+  value: '$(Build.DefinitionName)-ch-test'
   
 stages:
 - template: stages/deploy.yml  # Template references stage
@@ -34,7 +34,7 @@ stages:
     - script: echo job A
   - deployment:
     displayName: 'deploy to Prod'
-    environment: '$(envName)-prod2'
+    environment: '$(envName)-postFix'
     dependsOn: A
     continueOnError: true
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

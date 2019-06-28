@@ -8,8 +8,6 @@ jobs:
   pool: ${{ parameters.pool }}
   continueOnError: true
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  timeoutInMinutes: 10
-  cancelTimeoutInMinutes: 1
   variables:
     JOB_VAR: 'a job var' 
   environment: ${{ parameters.env }}

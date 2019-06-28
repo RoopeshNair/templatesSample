@@ -23,9 +23,17 @@ stages:
 
 - stage: Prod
   jobs:
+  - job: A
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - script: echo job A
   - deployment:
     displayName: 'deploy to Prod'
-    environment: 'smarthotel-prod'
+    environment: '$(Build.Repository.Name)-prod'
+    dependsOn: A
+    continueOnError: true
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     variables:
     - template: variables/deploy.yml  # Template references variables
     pool:

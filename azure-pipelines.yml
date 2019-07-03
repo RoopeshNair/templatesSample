@@ -1,13 +1,11 @@
 
 schedules:
-- cron: "0 0 * * *"
-  displayName: Daily midnight build
+- cron: "0 12 * * 0"
+  displayName: Weekly Sunday build
   branches:
     include:
-    - master
     - releases/*
-    exclude:
-    - releases/ancient/*
+  always: true
 
 variables:
 - name: envName

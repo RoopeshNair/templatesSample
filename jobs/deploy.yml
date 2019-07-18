@@ -16,8 +16,7 @@ jobs:
       deploy:     
         steps:
           - script: echo $(JOB_VAR)
-          ${{ if eq(variables['build.sourceBranch'], 'refs/heads/master')) }}:
-          - script: echo from master
+
 
 
 

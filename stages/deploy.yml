@@ -7,6 +7,13 @@ parameters:
 stages:
 - stage: Test_${{ parameters.stageName }}
   jobs:
+  - job:
+    pool: ${{ parameters.pool }}
+    continueOnError: true
+    steps:
+      - script: echo $(JOB_VAR)
+      ${{ if eq(variables['build.sourceBranch'], 'refs/heads/master')) }}:
+      - script: echo from master
   - deployment: ${{ parameters.jobName }}
     pool: ${{ parameters.pool }}
     environment: ${{ parameters.env }}

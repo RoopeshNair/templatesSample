@@ -22,3 +22,5 @@ stages:
         deploy:     
           steps:
             - script: echo 'hello'
+            - ${{ if eq(variables['build.sourceBranch'], 'refs/heads/master') }}:
+              - script: echo from master

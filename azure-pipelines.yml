@@ -7,13 +7,12 @@ schedules:
     - releases/*
   always: true
 
-
 trigger:
   batch: true
   paths:
-  include:
-  - master/*
-  - k8s/helm/partsunlimited-api
+    include:
+    - master/*
+    - k8s/helm/partsunlimited-api
 
 variables:
 - name: envName

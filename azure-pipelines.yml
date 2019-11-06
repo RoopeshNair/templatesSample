@@ -50,7 +50,7 @@ stages:
     - script: echo job A $(Build.Repository.Name)
   - deployment:
     displayName: 'deploy to Prod'
-    environment: '$(envName)-prod'
+    environment: '$(envName)'
     dependsOn: A
     continueOnError: true
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

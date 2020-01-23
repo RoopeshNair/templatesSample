@@ -2,6 +2,7 @@ parameters:
   name: ''
   pool: ''
   env: ''
+  sub: ''
 
 jobs:
 - deployment: ${{ parameters.name }}
@@ -16,6 +17,14 @@ jobs:
       deploy:     
         steps:
           - script: echo $(JOB_VAR)
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: $(azureSub)
+              ScriptType: 'InlineScript'
+              Inline: |
+                
+                (Get-Module -ListAvailable | Where-Object{ $_.Name -eq 'Azure' }) ` | Select Version, Name, Author, PowerShellVersion  | Format-List;
+
 
 
 

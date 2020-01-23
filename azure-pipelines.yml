@@ -17,6 +17,8 @@ trigger:
 variables:
 - name: envName
   value: 'smarthotel-qa'
+- name: azureSub
+  value: 'RMPM'
   
 stages:
 - template: stages/deploy.yml  # Template references stage
@@ -63,3 +65,10 @@ stages:
         deploy:
           steps:
           - script: echo ${{ variables.arch }} ${{ variables.config }}
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: $(azureSub)
+              ScriptType: 'InlineScript'
+              Inline: |
+                
+                Get-Module -ListAvailable -Name Azure -Refresh

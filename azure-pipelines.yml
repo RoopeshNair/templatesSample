@@ -16,7 +16,7 @@ trigger:
 
 variables:
 - name: envName
-  value: '$(Build.DefinitionName)'
+  value: 'smarthotel-qa'
   
 stages:
 - template: stages/deploy.yml  # Template references stage

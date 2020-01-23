@@ -34,7 +34,7 @@ stages:
       name: 'DeployQA'
       pool:
         vmImage: 'ubuntu-16.04'
-      env: 'smarthotel-qa'
+      env: $(envName)
   - job:
     pool:
       vmImage: 'ubuntu-16.04'

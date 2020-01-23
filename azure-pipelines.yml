@@ -67,8 +67,8 @@ stages:
           - script: echo ${{ variables.arch }} ${{ variables.config }}
           - task: AzurePowerShell@5
             inputs:
-              azureSubscription: $(azureSub)
+              azureSubscription: 'RMPM'
               ScriptType: 'InlineScript'
               Inline: |
                 
-                Get-Module -ListAvailable -Name Azure -Refresh
+                Get-AzureSubscription

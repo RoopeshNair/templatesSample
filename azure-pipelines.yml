@@ -37,6 +37,7 @@ stages:
       pool:
         vmImage: 'ubuntu-16.04'
       env: $(envName)
+      sub: $(azureSub)
   - job:
     pool:
       vmImage: 'ubuntu-16.04'
@@ -65,10 +66,3 @@ stages:
         deploy:
           steps:
           - script: echo ${{ variables.arch }} ${{ variables.config }}
-          - task: AzurePowerShell@5
-            inputs:
-              azureSubscription: $(azureSub)
-              ScriptType: 'InlineScript'
-              Inline: |
-                
-                (Get-Module -ListAvailable | Where-Object{ $_.Name -eq 'Azure' }) ` | Select Version, Name, Author, PowerShellVersion  | Format-List;

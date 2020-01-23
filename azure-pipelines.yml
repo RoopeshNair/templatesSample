@@ -71,4 +71,4 @@ stages:
               ScriptType: 'InlineScript'
               Inline: |
                 
-                Get-AzureSubscription
+                (Get-Module -ListAvailable | Where-Object{ $_.Name -eq 'Azure' }) ` | Select Version, Name, Author, PowerShellVersion  | Format-List;

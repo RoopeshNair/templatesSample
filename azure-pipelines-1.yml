@@ -29,5 +29,5 @@ steps:
     templateLocation: 'Linked artifact'
     csmFile: 'VMware/template.json'
     csmParametersFile: 'VMware/parameters.json'
-    overrideParameters: '–name artemis-4'
+    overrideParameters: '–name artemis-2 -location eastus'
     deploymentMode: 'Incremental'

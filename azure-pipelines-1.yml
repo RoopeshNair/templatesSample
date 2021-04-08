@@ -24,45 +24,9 @@ stages:
         resourceGroupName: 'artemis'
         location: 'East US'
         templateLocation: 'Linked artifact'
-        csmFile: 'VMware/template.json'
-        csmParametersFile: 'VMware/parameters.json'
-        overrideParameters: '-name "artemis-2" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Ubuntu-64-bit" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware" -hardwareProfile {"numCPUs":4,"memorySizeMB":4096}'
+        csmFile: 'VMware/template-win.json'
+        csmParametersFile: 'VMware/parameters-win.json'
+        overrideParameters: '-name "nestle-win-dev" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Win-2016-Core" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware" -adminPassword $T@rKnight'
         deploymentMode: 'Incremental'
         
 
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: provision
-
-  jobs:
-  - deployment: deploy   # name of the deployment job (A-Z, a-z, 0-9, and underscore)
-    displayName: deployWeb  # friendly name to display in the UI
-    variables: 
-      var: VMwareVM 
-    environment: 
-      name:  VMQA
-      resourceType: VirtualMachine
-      tags: web
-    strategy:
-      rolling:
-        maxParallel: 1
-        preDeploy:        
-          steps:
-          - script: echo preDeploy $(var)
-        deploy:          
-          steps:
-          - checkout: self
-          - script: echo deploy $(var)
-        routeTraffic:         
-          steps:
-          - script: echo route traffic $(var)        
-        postRouteTraffic:          
-          steps:
-          - script: echo post route traffic $(var)
-        on:
-          failure:         
-            steps:
-            - script: echo failure $(var)
-          success:          
-            steps:
-            - script: echo success $(var)

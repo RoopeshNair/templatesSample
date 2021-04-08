@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "resourcePoolId": {
+            "type": "string"
+        },
+        "templateId": {
+            "type": "string"
+        },
+        "vCenterId": {
+            "type": "string"
+        },
+        "customLocationId": {
+            "type": "string"
+        },
+        "vmKind": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2020-10-01-preview",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachines",
+            "properties": {
+                "resourcePoolId": "[parameters('resourcePoolId')]",
+                "templateId": "[parameters('templateId')]",
+                "vCenterId": "[parameters('vCenterId')]"
+            },
+            "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "[parameters('customLocationId')]"
+            },
+            "kind": "[parameters('vmKind')]"
+        }
+    ]
+}

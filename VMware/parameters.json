@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "artemis-3"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "resourcePoolId": {
+            "value": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool"
+        },
+        "templateId": {
+            "value": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Ubuntu-64-bit"
+        },
+        "customLocationId": {
+            "value": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad"
+        },
+        "vmKind": {
+            "value": "VMware"
+        },
+        "vCenterId": {
+            "value": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter"
+        }
+    }
+}

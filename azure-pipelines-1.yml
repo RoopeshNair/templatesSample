@@ -35,13 +35,34 @@ stages:
   dependsOn: provision
 
   jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    pool:
-      vmImage: ubuntu-latest
-    environment: 'nestle-dev'
+  - deployment: deploy   # name of the deployment job (A-Z, a-z, 0-9, and underscore)
+    displayName: deployWeb  # friendly name to display in the UI
+    variables: 
+      var: VMwareVM 
+    environment: 
+      name:  VMQA
+      resourceType: VirtualMachine
+      tags: web
     strategy:
-      runOnce:
-        deploy:
+      rolling:
+        maxParallel: 1
+        preDeploy:        
           steps:
-          - script: echo "hello world"
+          - script: echo preDeploy $(var)
+        deploy:          
+          steps:
+          - checkout: self
+          - script: echo deploy $(var)
+        routeTraffic:         
+          steps:
+          - script: echo route traffic $(var)        
+        postRouteTraffic:          
+          steps:
+          - script: echo post route traffic $(var)
+        on:
+          failure:         
+            steps:
+            - script: echo failure $(var)
+          success:          
+            steps:
+            - script: echo success $(var)

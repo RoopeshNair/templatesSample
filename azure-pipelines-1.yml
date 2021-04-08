@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'aretmis-rg'
+    subscriptionId: '204898ee-cd13-4332-b9d4-55ca5c25496d'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'artemis'
+    location: 'East US'
+    templateLocation: 'Linked artifact'
+    csmFile: 'VMware/template.json'
+    csmParametersFile: 'VMware/parameters.json'
+    overrideParameters: '–name artemis-4'
+    deploymentMode: 'Incremental'

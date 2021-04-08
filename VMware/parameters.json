@@ -25,7 +25,7 @@
         },
         "hardwareProfile": {
             "value": {
-                "numCPUs": 2,
+                "numCPUs": 4,
                 "memorySizeMB": 4096
             }
         }

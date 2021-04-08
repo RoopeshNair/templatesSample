@@ -22,6 +22,9 @@
         },
         "vmKind": {
             "type": "string"
+        },
+        "hardwareProfile": {
+            "type": "object"
         }
     },
     "variables": {},
@@ -34,7 +37,8 @@
             "properties": {
                 "resourcePoolId": "[parameters('resourcePoolId')]",
                 "templateId": "[parameters('templateId')]",
-                "vCenterId": "[parameters('vCenterId')]"
+                "vCenterId": "[parameters('vCenterId')]",
+                "hardwareProfile": "[parameters('hardwareProfile')]"
             },
             "extendedLocation": {
                 "type": "CustomLocation",

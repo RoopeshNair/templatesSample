@@ -28,5 +28,18 @@ stages:
         csmParametersFile: 'VMware/paramters-win.json'
         overrideParameters: '-name "nestle-win-dev" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Win-2016-Core" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware" -adminPassword $T@rKnight'
         deploymentMode: 'Incremental'
-        
+    
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'aretmis-rg'
+        subscriptionId: '204898ee-cd13-4332-b9d4-55ca5c25496d'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'artemis'
+        location: 'East US'
+        templateLocation: 'Linked artifact'
+        csmFile: 'VMware/template.json'
+        csmParametersFile: 'VMware/parameters.json'
+        overrideParameters: '-name "artemis-1" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Ubuntu-64-bit" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware" -hardwareProfile {"numCPUs":4,"memorySizeMB":4096}'
+        deploymentMode: 'Incremental'
 

@@ -6,28 +6,42 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+stages:
+- stage: Provision
+  displayName: Provision VMware VM
+  jobs:  
+  - job: provision
+    displayName: provision
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'aretmis-rg'
+        subscriptionId: '204898ee-cd13-4332-b9d4-55ca5c25496d'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'artemis'
+        location: 'East US'
+        templateLocation: 'Linked artifact'
+        csmFile: 'VMware/template.json'
+        csmParametersFile: 'VMware/parameters.json'
+        overrideParameters: '-name "artemis-1" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Ubuntu-64-bit" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware"'
+        deploymentMode: 'Incremental'
+        
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: provision
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'aretmis-rg'
-    subscriptionId: '204898ee-cd13-4332-b9d4-55ca5c25496d'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'artemis'
-    location: 'East US'
-    templateLocation: 'Linked artifact'
-    csmFile: 'VMware/template.json'
-    csmParametersFile: 'VMware/parameters.json'
-    overrideParameters: '-name "artemis-1" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Ubuntu-64-bit" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware"'
-    deploymentMode: 'Incremental'
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    environment: 'nestle-dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: "hello world"

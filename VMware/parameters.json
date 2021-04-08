@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "value": "artemis-3"
+            "value": "artemis-6"
         },
         "location": {
             "value": "eastus"
@@ -22,6 +22,12 @@
         },
         "vCenterId": {
             "value": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter"
+        },
+        "hardwareProfile": {
+            "value": {
+                "numCPUs": 2,
+                "memorySizeMB": 4096
+            }
         }
     }
 }

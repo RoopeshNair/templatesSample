@@ -25,7 +25,7 @@ stages:
         location: 'East US'
         templateLocation: 'Linked artifact'
         csmFile: 'VMware/template-win.json'
-        csmParametersFile: 'VMware/parameters-win.json'
+        csmParametersFile: 'VMware/paramters-win.json'
         overrideParameters: '-name "nestle-win-dev" -location "eastus" -resourcePoolId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/pm-demo-resourcepool" -templateId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/Win-2016-Core" -vCenterId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.VMware/vcenters/FirstPartyLab-ArcvCenter" -customLocationId "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snmuvva-pm-demos/providers/Microsoft.ExtendedLocation/customLocations/FirstPartyLab-Hyderabad" -vmKind "VMware" -adminPassword $T@rKnight'
         deploymentMode: 'Incremental'
         

@@ -44,4 +44,4 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: "hello world"
+          - script: echo "hello world"
